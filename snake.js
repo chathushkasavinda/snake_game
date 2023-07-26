@@ -1,9 +1,19 @@
 import { getInputDirection } from "./input.js"
+const scoreElement = document.querySelector(".current_score");
+const highScoreElement = document.querySelector(".high_score");
 
+
+console.log(scoreElement)
 export const Snake_speed = 5
 
 const snake_body = [ {x:10 ,y:11}]
 let newSegment = 0
+let count = 0
+// getting high score from the local storage
+let highScore = localStorage.getItem("high_score") || 0;
+highScoreElement.innerHTML = `High Score : ${highScore}`
+
+
 
 export function update(){
     addSegments()
@@ -23,11 +33,17 @@ export function draw(gameBoard){
         snakeElement.style.gridColumnStart = segment.x
         snakeElement.classList.add('snake')
         gameBoard.appendChild(snakeElement)
+        
     })
 }
 
 export function expandSnake(amount){
     newSegment += amount
+    count++
+    highScore = count >= highScore ? count : highScore;
+    localStorage.setItem("high_score",highScore)
+    scoreElement.innerText = `Score : ${count}`;
+    highScoreElement.innerHTML = `High Score : ${highScore}`
 }
 
 export function onSnake(position,{ignoreHead = false} = {}){
@@ -52,7 +68,8 @@ function equalPositions(pos1,pos2){
 function addSegments(){
     for (let i = 0; i < newSegment; i++) {
        snake_body.push({...snake_body[snake_body.length-1]})
-        
+       
     }
     newSegment=0
+    
 }

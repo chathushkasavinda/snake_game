@@ -12,13 +12,13 @@
             justify-content: center;
             align-items: center;
             margin: 0;
-            background-color: black;
+            background-color:#BBC6DC;
         }
 
         #game_border{
-            background-color: #ccc;
-            width: 100vmin;
-            height: 100vmin;
+            background-color: #293747;  
+            width: 80vmin;
+            height: 80vmin;
             display: grid;
             grid-template-rows: repeat(21,1fr);
             grid-template-columns: repeat(21,1fr);
@@ -26,12 +26,33 @@
 
          .snake{
             background-color: aqua;
-            border: .25vmin solid black;
+            /* border: .25vmin solid black; */
          }
 
          .food{
-            background-color: yellow;
-            border: .25vmin solid black;
+            background-color: red;
+            /* border: .25vmin solid black; */
+         }
+         .score{
+            position: absolute;
+            top: 8px;
+            height: 55px;
+            width: 500px;
+            background-color: black;
+         }
+         .current_score{
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #BBC6DC;
+         }
+         .high_score {
+            position: absolute;
+            top: 20px;
+            left: 300px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #BBC6DC;
          }
 
 
@@ -39,9 +60,16 @@
     <script src="game.js" defer type="module"></script>
 </head>
 <body>
+    
     <div id="game_border"></div>
+    <div class="score">
+        <span class="current_score">Score : 0</span>
+        <span class="high_score">High Score : 0</span>
+    </div>
+    
     <div class="snake"></div>
     <div class="food"></div>
+   
 
 </body>
 
